@@ -1,7 +1,7 @@
 <?php
-require_once dirname(__FILE__) . '/../../bootstrap.php';
+namespace Jirapi; require_once dirname(__FILE__) . '/../../bootstrap.php';
 
-class Jirapi_ClientTest extends Jirapi_Test {
+class ClientTest extends Test {
 
 	public function testConstruct() {
 		$host = 'ruflin.com';

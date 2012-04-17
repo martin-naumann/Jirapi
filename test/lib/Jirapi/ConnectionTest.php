@@ -1,18 +1,13 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: rodrigo.benz
- * Date: 16.04.12
- * Time: 17:07
- * To change this template use File | Settings | File Templates.
- */
-class Jirapi_ConnectionTest extends Jirapi_Test {
+
+namespace Jirapi; require_once dirname(__FILE__) . '/../../bootstrap.php';
+class Jirapi_ConnectionTest extends Test {
 
 	public function testSetup() {
-		$config= array(
+		$config = array(
 			'url' => 'https://jira.atlassian.com',
 		);
-		$client = new \Jirapi\Client($config);
+		$client = new Client($config);
 		$response = $client->getIssue('JRA-9');
 		print_r($response);
 	}
