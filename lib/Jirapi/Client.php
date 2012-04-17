@@ -12,8 +12,8 @@ namespace Jirapi; class Client {
 	 * @var array
 	 */
 	protected $_config = array(
-		'host' => '',
-		'port' => '',
+		'host' => 'localhost',
+		'port' => '8080',
 		'path' => '',
 		'url' => null,
 		'username' => '',
@@ -28,7 +28,21 @@ namespace Jirapi; class Client {
 	 * @param array $config
 	 */
 	public function __construct(array $config = array()) {
-		$this->_config = $config;
+		$this->setConfig($config);
+	}
+
+	/**
+	 *
+	 *
+	 * @param array $config
+	 * @return Client
+	 */
+	public function setConfig(array $config) {
+		foreach ($config as $key => $value) {
+			$this->_config[$key] = $value;
+		}
+
+		return $this;
 	}
 
 	/**

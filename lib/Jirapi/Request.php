@@ -106,7 +106,7 @@ namespace Jirapi; class Request {
 			'url' => $this->getClient()->getConfig('url'),
 			'host' => $this->getClient()->getHost(),
 			'port' => $this->getClient()->getPort(),
-			'path' => $this->getClient()->getPath(),
+			'path' => $this->getClient()->getConfig('path'),
 			'username' => $this->getClient()->getConfig('username'),
 			'password' => $this->getClient()->getConfig('password')
 		);
