@@ -7,6 +7,7 @@
 namespace Jirapi\Data; abstract class DataAbstract {
 
 	protected $_client = null;
+	protected $_data = array();
 
 	public function __construct($client) {
 		$this->_client = $client;
@@ -27,6 +28,13 @@ namespace Jirapi\Data; abstract class DataAbstract {
 	 */
 	public function getClient() {
 		return $this->_client;
+	}
+
+	/**
+	 * @return \Jirapi\Client
+	 */
+	public function getData() {
+		return $this->_data;
 	}
 
 }

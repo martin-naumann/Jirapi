@@ -5,11 +5,13 @@ class ConnectionTest extends Test {
 
 	public function testSetup() {
 		$config = array(
-			'url' => 'https://centralway.atlassian.com'
+			'host' => '172.17.18.64',
+			'username' => 'admin',
+			'password' => 'admin'
 		);
 		$client = new Client($config);
-		$response = $client->getIssue('JRA-9');
-		print_r($response);
+		$response = $client->getIssue('CWA-1');
+		$this->assertNotEquals($response->getData(), array());
 	}
 
 }
