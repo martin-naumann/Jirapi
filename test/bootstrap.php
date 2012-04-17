@@ -10,7 +10,7 @@ set_include_path(
 );
 
 function jirapi_autoload($class) {
-	if (substr($class, 0, 9) == 'Jirapi_') {
+	if (substr($class, 0, 7) == 'Jirapi_') {
 		$file = str_replace('_', '/', $class) . '.php';
 		require_once $file;
 	}

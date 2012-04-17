@@ -6,7 +6,7 @@
  * Time: 15:30
  * To change this template use File | Settings | File Templates.
  */
-class Jirapi_Transport {
+namespace Jirapi; class Transport {
 	protected $_config;
 	protected $_data;
 	protected $_method;
@@ -18,9 +18,9 @@ class Jirapi_Transport {
 	protected static $_connection = null;
 
 	/**
-	 * @param Jirapi_Request $request Request object
+	 * @param Request $request Request object
 	 */
-	public function __construct(Jirapi_Request $request) {
+	public function __construct(Request $request) {
 		$this->_request = $request;
 	}
 
@@ -33,7 +33,7 @@ class Jirapi_Transport {
 			$baseUri = $params['url'];
 		} else {
 			if (!isset($params['host']) || !isset($params['port'])) {
-				throw new Jirapi_Exception_Invalid('host and port have to been set');
+				throw new Exception\Invalid('host and port have to been set');
 			}
 
 			$path = isset($params['path']) ? $params['path'] : '';
@@ -56,7 +56,7 @@ class Jirapi_Transport {
 		// Checks if error exists
 		$errorNumber = curl_errno($conn);
 		if ($errorNumber > 0) {
-			throw new Elastica_Exception_Client($errorNumber, $request, $response);
+			throw new Exception\Client($errorNumber, $request, $response);
 		}
 
 		return $response;
@@ -75,7 +75,7 @@ class Jirapi_Transport {
 	/**
 	 * Returns the request object
 	 *
-	 * @return Elastica_Request Request object
+	 * @return Request Request object
 	 */
 	public function getRequest() {
 		return $this->_request;

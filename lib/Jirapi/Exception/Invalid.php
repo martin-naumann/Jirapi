@@ -4,8 +4,8 @@
  *
  * @category
  * @package Jirapi
- * @author Rodrigo Benz
+ * @author  Rodrigo Benz
  */
-class Jirapi_Exception_Invalid extends Jirapi_Exception_Abstract {
+namespace Jirapi\Exception; class Invalid extends ExceptionAbstract {
 
 }

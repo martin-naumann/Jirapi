@@ -2,7 +2,7 @@
 /**
  * Class for main interaction
  */
-class Jirapi_Client {
+namespace Jirapi; class Client {
 
 	const TIMEOUT = 50;
 
@@ -44,7 +44,7 @@ class Jirapi_Client {
 		}
 
 		if (!array_key_exists($key, $this->_config)) {
-			throw new Jirapi_Exception_Invalid('Config key is not set: ' . $key);
+			throw new Exception\Invalid('Config key is not set: ' . $key);
 		}
 
 		return $this->_config[$key];
@@ -70,12 +70,11 @@ class Jirapi_Client {
 
 	/**
 	 * @param $issueIdOrKey
-	 * @return Jirapi_Response_Abstrac_Issue
+	 * @return Data\Issue
 	 */
 	public function getIssue($issueIdOrKey) {
-		$path = '/rest/api/2/issue/' . $issueIdOrKey;
-		$responseString = $this->request($path, Jirapi_Request::GET, array());
-		$issue = new Jirapi_Response_Abstrac_Issue($responseString);
+		$issue = Data\Issue::create($this);
+		$issue->getIssue($issueIdOrKey);
 		return $issue;
 	}
 
@@ -85,8 +84,8 @@ class Jirapi_Client {
 	 * @param array $data
 	 * @return mixed
 	 */
-	protected function request($path, $method, $data = array()) {
-		$request = new Jirapi_Request($this, $path, $method, $data);
+	public function request($path, $method, $data = array()) {
+		$request = new Request($this, $path, $method, $data);
 		return $request->send();
 	}
 

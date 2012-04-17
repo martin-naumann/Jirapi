@@ -2,7 +2,7 @@
 /**
  * Connection management
  */
-class Jirapi_Request {
+namespace Jirapi; class Request {
 
 	const POST = 'POST';
 	const PUT = 'PUT';
@@ -14,7 +14,7 @@ class Jirapi_Request {
 	protected $_method;
 	protected $_data;
 
-	public function __construct(Jirapi_Client $client, $path, $method, $data = array()) {
+	public function __construct(Client $client, $path, $method, $data = array()) {
 		$this->_client = $client;
 		$this->_path = $path;
 		$this->_method = $method;
@@ -25,7 +25,7 @@ class Jirapi_Request {
 	 * Sets the request method. Use one of the four consts
 	 *
 	 * @param string $method Request method
-	 * @return Jirapi_Request Current object
+	 * @return Request Current object
 	 */
 	public function setMethod($method) {
 		$this->_method = $method;
@@ -43,7 +43,7 @@ class Jirapi_Request {
 	 * Sets the request data
 	 *
 	 * @param array $data Request data
-	 * @return Jirapi_Request Current object
+	 * @return Request Current object
 	 */
 	public function setData($data) {
 		$this->_data = $data;
@@ -61,7 +61,7 @@ class Jirapi_Request {
 	 * Sets the request path
 	 *
 	 * @param string $path Request path
-	 * @return Jirapi_Request Current object
+	 * @return Request Current object
 	 */
 	public function setPath($path) {
 		$this->_path = $path;
@@ -76,7 +76,7 @@ class Jirapi_Request {
 	}
 
 	/**
-	 * @return Jirapi_Client
+	 * @return Client
 	 */
 	public function getClient() {
 		return $this->_client;
@@ -100,7 +100,7 @@ class Jirapi_Request {
 	 */
 	public function send() {
 
-		$transport = new Jirapi_Transport($this);
+		$transport = new Transport($this);
 
 		$params = array(
 			'url' => $this->getClient()->getConfig('url'),
