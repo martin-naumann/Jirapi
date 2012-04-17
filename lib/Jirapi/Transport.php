@@ -38,7 +38,7 @@ namespace Jirapi; class Transport {
 
 			$path = isset($params['path']) ? $params['path'] : '';
 
-			$baseUri = 'https://' . $params['host'] . ':' . $params['port'] . '/' . $path;
+			$baseUri = 'http://' . $params['host'] . ':' . $params['port'] . '/' . $path;
 		}
 
 		$baseUri .= $request->getPath();
@@ -46,20 +46,22 @@ namespace Jirapi; class Transport {
 		curl_setopt($conn, CURLOPT_URL, $baseUri);
 		curl_setopt($conn, CURLOPT_USERPWD, $params['username'] . ":" . $params['password']);
 		curl_setopt($conn, CURLOPT_CUSTOMREQUEST, $request->getMethod());
-		curl_setopt($conn, CURLOPT_TIMEOUT, 30);
+		curl_setopt($conn, CURLOPT_TIMEOUT, 100);
 
 		// cURL opt returntransfer leaks memory, therefore OB instead.
 		ob_start();
 		curl_exec($conn);
-		$response = ob_get_clean();
+		$responseJson = ob_get_clean();
 
 		// Checks if error exists
 		$errorNumber = curl_errno($conn);
 		if ($errorNumber > 0) {
-			throw new Exception\Client($errorNumber, $request, $response);
+			throw new Exception\Client($errorNumber, $request, $responseJson);
 		}
 
-		return $response;
+		$response = new Response($responseJson);
+
+		return $response->getData();
 	}
 
 	/**

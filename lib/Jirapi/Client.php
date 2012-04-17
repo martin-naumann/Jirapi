@@ -4,6 +4,21 @@
  */
 namespace Jirapi; class Client {
 
+	/**
+	 * Default jira port
+	 */
+	const DEFAULT_PORT = 2990;
+
+	/**
+	 * Default host
+	 */
+	const DEFAULT_HOST = 'localhost';
+
+	const DEFAULT_PATH = 'jira';
+
+	/**
+	 * Default timeout
+	 */
 	const TIMEOUT = 50;
 
 	/**
@@ -12,9 +27,9 @@ namespace Jirapi; class Client {
 	 * @var array
 	 */
 	protected $_config = array(
-		'host' => 'localhost',
-		'port' => '8080',
-		'path' => '',
+		'host' => self::DEFAULT_HOST,
+		'port' => self::DEFAULT_PORT,
+		'path' => self::DEFAULT_PATH,
 		'url' => null,
 		'username' => '',
 		'password' => '',

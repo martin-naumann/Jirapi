@@ -15,10 +15,9 @@ namespace Jirapi\Exception; class Client extends ExceptionAbstract {
 	 * @param \Jirapi\Request			 $request
 	 * @param \Jirapi\Response			$response
 	 */
-	public function __construct($error, \Jirapi\Request $request = null, \Jirapi\Response $response = null) {
+	public function __construct($error, \Jirapi\Request $request = null) {
 		$this->_error = $error;
 		$this->_request = $request;
-		$this->_response = $response;
 
 		$message = $this->getErrorMessage($this->getError());
 		parent::__construct($message);
@@ -44,13 +43,13 @@ namespace Jirapi\Exception; class Client extends ExceptionAbstract {
 				$error = "Malformed URL";
 				break;
 			case CURLE_COULDNT_RESOLVE_PROXY:
-				$error = "Couldnt resolve proxy";
+				$error = "Couldn't resolve proxy";
 				break;
 			case CURLE_COULDNT_RESOLVE_HOST:
-				$error = "Couldnt resolve host";
+				$error = "Couldn't resolve host";
 				break;
 			case CURLE_COULDNT_CONNECT:
-				$error = "Couldnt connect to host, ElasticSearch down?";
+				$error = "Couldn't connect to host";
 				break;
 			case 28:
 				$error = "Operation timed out";
