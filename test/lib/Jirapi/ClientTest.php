@@ -6,7 +6,7 @@ class Jirapi_ClientTest extends Jirapi_Test {
 	public function testConstruct() {
 		$host = 'ruflin.com';
 		$port = 9300;
-		$client = new Jirapi_Client(array(
+		$client = new \Jirapi\Client(array(
 			'host' => $host,
 			'port' => $port
 		));

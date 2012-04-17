@@ -12,7 +12,7 @@ class Jirapi_ConnectionTest extends Jirapi_Test {
 		$config= array(
 			'url' => 'https://jira.atlassian.com',
 		);
-		$client = new Jirapi_Client($config);
+		$client = new \Jirapi\Client($config);
 		$response = $client->getIssue('JRA-9');
 		print_r($response);
 	}
