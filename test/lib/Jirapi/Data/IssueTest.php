@@ -8,6 +8,7 @@ namespace Jirapi\Data; require_once dirname(__FILE__) . '/../../../bootstrap.php
 class ConnectionTest extends \Jirapi\Test {
 
 	protected $_client = null;
+	protected static $_key = '';
 
 	protected function setUp() {
 		print "\nConnectionTest::setUp()";
@@ -17,13 +18,6 @@ class ConnectionTest extends \Jirapi\Test {
 			'password' => 'admin'
 		);
 		$this->_client = new \Jirapi\Client($config);
-	}
-
-	public function testGetIssue() {
-		print "\nConnectionTest::testGetIssue()";
-		$issue = Issue::create($this->_client);
-		$issue->getIssue('CWA-1');
-		//print_r($issue->getLastResponse());
 	}
 
 	public function testCreateIssue() {
@@ -38,6 +32,17 @@ class ConnectionTest extends \Jirapi\Test {
 		);
 		$issue = Issue::create($this->_client);
 		$issue->createIssue($params);
+		self::$_key = $issue->getLastResponse()->key;
+		// print_r($issue->getLastResponse());
+	}
+
+	/**
+	 * @depends testCreateIssue
+	 */
+	public function testGetIssue() {
+		print "\nConnectionTest::testGetIssue()";
+		$issue = Issue::create($this->_client);
+		$issue->getIssue(self::$_key);
 		//print_r($issue->getLastResponse());
 	}
 
@@ -46,8 +51,9 @@ class ConnectionTest extends \Jirapi\Test {
 	 */
 	public function testDeleteIssue() {
 		print "\nConnectionTest::testDeleteIssue()";
-		// Remove the following line when you implement this method.
-		throw new \RuntimeException('Not yet implemented.');
+		$issue = Issue::create(($this->_client));
+		$issue->deleteIssue(self::$_key);
+		print_r($issue->getLastResponse());
 	}
 
 }

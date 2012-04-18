@@ -31,4 +31,12 @@ namespace Jirapi\Data; class Issue extends DataAbstract {
 		$data = $this->getClient()->request(self::PATH, \Jirapi\Request::POST, $this->_params);
 		$this->_lastResponse = $data;
 	}
+
+	public function deleteIssue($issueIdOrKey) {
+		// TODO: set deleteSubtasks parameter
+		$path = self::PATH . '/' . $issueIdOrKey;
+		$data = $this->getClient()->request($path, \Jirapi\Request::DELETE, array());
+		$this->_data = $data;
+		$this->_lastResponse = $data;
+	}
 }
