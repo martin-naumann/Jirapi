@@ -47,8 +47,6 @@ namespace Jirapi; class Client {
 	}
 
 	/**
-	 *
-	 *
 	 * @param array $config
 	 * @return Client
 	 */
@@ -107,6 +105,7 @@ namespace Jirapi; class Client {
 		return $issue;
 	}
 
+
 	/**
 	 * @param	   $path
 	 * @param	   $method
@@ -118,4 +117,16 @@ namespace Jirapi; class Client {
 		return $request->send();
 	}
 
+	/**
+	 * Searches for issues using JQL.
+	 *
+	 * @param string $sql
+	 * @param array  $params
+	 * @return Data\Search
+	 */
+	public function search($sql, $params) {
+		$search = Data\Search::create($this);
+		$search->request($sql, $params);
+		return $search;
+	}
 }
