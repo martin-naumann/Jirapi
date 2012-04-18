@@ -48,6 +48,20 @@ namespace Jirapi; class Transport {
 		curl_setopt($conn, CURLOPT_CUSTOMREQUEST, $request->getMethod());
 		curl_setopt($conn, CURLOPT_TIMEOUT, 100);
 
+		$data = $request->getData();
+		if (!empty($data)) {
+			if (is_array($data)) {
+				$content = json_encode($data);
+			} else {
+				$content = $data;
+			}
+
+			// Escaping of / not necessary. Causes problems in base64 encoding of files
+			$content = str_replace('\/', '/', $content);
+
+			curl_setopt($conn, CURLOPT_POSTFIELDS, $content);
+		}
+
 		// cURL opt returntransfer leaks memory, therefore OB instead.
 		ob_start();
 		curl_exec($conn);
