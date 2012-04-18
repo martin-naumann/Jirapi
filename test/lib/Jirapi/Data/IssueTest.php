@@ -26,8 +26,8 @@ class ConnectionTest extends \Jirapi\Test {
 		//print_r($issue->getLastResponse());
 	}
 
-	public function testPostIssue() {
-		print "\nConnectionTest::testPostIssue()";
+	public function testCreateIssue() {
+		print "\nConnectionTest::testCreateIssue()";
 		$params = array(
 			'fields' => array(
 				'project' => array('key' => 'CWA'),
@@ -37,8 +37,17 @@ class ConnectionTest extends \Jirapi\Test {
 			)
 		);
 		$issue = Issue::create($this->_client);
-		$issue->postIssue($params);
-		print_r($issue->getLastResponse());
+		$issue->createIssue($params);
+		//print_r($issue->getLastResponse());
+	}
+
+	/**
+	 * @depends testCreateIssue
+	 */
+	public function testDeleteIssue() {
+		print "\nConnectionTest::testDeleteIssue()";
+		// Remove the following line when you implement this method.
+		throw new \RuntimeException('Not yet implemented.');
 	}
 
 }

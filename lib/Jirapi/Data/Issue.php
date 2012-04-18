@@ -23,7 +23,7 @@ namespace Jirapi\Data; class Issue extends DataAbstract {
 		return $this->_lastResponse;
 	}
 
-	public function postIssue($params = array()) {
+	public function createIssue($params = array()) {
 		// use $params
 		if (isset($params)) {
 			$this->_params = $params;

@@ -59,6 +59,7 @@ namespace Jirapi; class Transport {
 			// Escaping of / not necessary. Causes problems in base64 encoding of files
 			$content = str_replace('\/', '/', $content);
 
+			curl_setopt($conn, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 			curl_setopt($conn, CURLOPT_POSTFIELDS, $content);
 		}
 
