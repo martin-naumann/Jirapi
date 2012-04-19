@@ -21,6 +21,7 @@ class ConnectionTest extends \Jirapi\Test {
 	}
 
 	public function testCreateIssue() {
+		// TODO: assertions
 		print "\nConnectionTest::testCreateIssue()";
 		$params = array(
 			'fields' => array(
@@ -39,6 +40,7 @@ class ConnectionTest extends \Jirapi\Test {
 	 * @depends testCreateIssue
 	 */
 	public function testGetIssue() {
+		// TODO: assertions
 		print "\nConnectionTest::testGetIssue()";
 		$issue = new Issue(self::$_key, $this->_client);
 		//print_r($issue->getData());
@@ -48,6 +50,7 @@ class ConnectionTest extends \Jirapi\Test {
 	 * @depends testCreateIssue
 	 */
 	public function testDeleteIssue() {
+		// TODO: assertions
 		print "\nConnectionTest::testDeleteIssue()";
 		$issue = new Issue(self::$_key, $this->_client);
 		$issue->delete();

@@ -16,12 +16,13 @@ class ConnectionTest extends Test {
 	}
 
 	public function testSearch() {
+		// TODO: assertions
 		print "\nConnectionTest::testSearch()";
 		$jql = 'assignee = admin';
 		$params = array();
 
 		$search = $this->_client->newSearch();
 		$search->request($jql, $params);
-		print_r($search->getData());
+		//print_r($search->getData());
 	}
 }
