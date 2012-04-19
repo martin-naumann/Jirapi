@@ -112,6 +112,15 @@ namespace Jirapi; class Client {
 	}
 
 	/**
+	 * Create new Search
+	 *
+	 * @return Data\Search
+	 */
+	public function newSearch() {
+		return new \Jirapi\Data\Search($this);
+	}
+
+	/**
 	 * @param	   $path
 	 * @param	   $method
 	 * @param array $data
@@ -120,16 +129,5 @@ namespace Jirapi; class Client {
 	public function request($path, $method, $data = array()) {
 		$request = new Request($this, $path, $method, $data);
 		return $request->send();
-	}
-
-	/**
-	 * Searches for issues using JQL.
-	 *
-	 * @param string $sql
-	 * @param array  $params
-	 * @return Data\Search
-	 */
-	public function search($sql, $params) {
-		return new Data\Search($sql, $params, $this);
 	}
 }

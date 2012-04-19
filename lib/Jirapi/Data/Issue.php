@@ -27,6 +27,13 @@ namespace Jirapi\Data; class Issue extends DataAbstract {
 		$this->request($path, \Jirapi\Request::DELETE, array());
 	}
 
+	/**
+	 *
+	 * @param $path
+	 * @param $method
+	 * @param $data
+	 * @return mixed
+	 */
 	public function request($path, $method, $data) {
 		return $this->getClient()->request($path, $method, $data);
 	}

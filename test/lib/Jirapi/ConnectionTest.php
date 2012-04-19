@@ -8,7 +8,7 @@ class ConnectionTest extends Test {
 	protected function setUp() {
 		print "\nConnectionTest::setUp()";
 		$config = array(
-			'host' => '172.17.18.64',
+			'host' => '192.168.192.44',
 			'username' => 'admin',
 			'password' => 'admin'
 		);
@@ -19,7 +19,9 @@ class ConnectionTest extends Test {
 		print "\nConnectionTest::testSearch()";
 		$jql = 'assignee = admin';
 		$params = array();
-		$response = $this->_client->search($jql, $params);
-		//print_r($response->getData());
+
+		$search = $this->_client->newSearch();
+		$search->request($jql, $params);
+		print_r($search->getData());
 	}
 }
