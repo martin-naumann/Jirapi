@@ -11,6 +11,7 @@ namespace Jirapi; class Transport {
 	protected $_data;
 	protected $_method;
 	protected $_path;
+    protected $_request;
 
 	/**
 	 * @var resource Curl resource to reuse
