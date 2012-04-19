@@ -18,16 +18,6 @@ namespace Jirapi\Data; abstract class DataAbstract {
 	}
 
 	/**
-	 * Static function to create a new Data object
-	 * @static
-	 * @param \Jirapi\Client $client
-	 * @return DataAbstract
-	 */
-	public static function create($client) {
-		return new static($client);
-	}
-
-	/**
 	 * Returns the \Jirapi\Client assigned to this object
 	 * @return \Jirapi\Client
 	 */

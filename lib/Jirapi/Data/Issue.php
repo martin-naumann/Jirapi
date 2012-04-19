@@ -8,35 +8,26 @@ namespace Jirapi\Data; class Issue extends DataAbstract {
 
 	const PATH = '/rest/api/2/issue';
 
-	protected $_data = array();
-	protected $_lastResponse = array();
-	protected $_params = array();
+	protected $_idOrKey = '';
 
-	public function getIssue($issueIdOrKey) {
-		$path = self::PATH . '/' . $issueIdOrKey;
-		$data = $this->getClient()->request($path, \Jirapi\Request::GET, array());
-		$this->_data = $data;
-		$this->_lastResponse = $data;
+	public function __construct($issueIdOrKey, $client) {
+		parent::__construct($client);
+		$this->_idOrKey = $issueIdOrKey;
+		$path = self::PATH . '/' . $this->_idOrKey;
+		$this->_data = $this->request($path, \Jirapi\Request::GET, array());
 	}
 
-	public function getLastResponse() {
-		return $this->_lastResponse;
+	public static function create($params = array(), \Jirapi\Client $client) {
+		$data = $client->request(self::PATH, \Jirapi\Request::POST, $params);
+		return new static($data->key, $client);
 	}
 
-	public function createIssue($params = array()) {
-		// use $params
-		if (isset($params)) {
-			$this->_params = $params;
-		}
-		$data = $this->getClient()->request(self::PATH, \Jirapi\Request::POST, $this->_params);
-		$this->_lastResponse = $data;
+	public function delete() {
+		$path = self::PATH . '/' . $this->_idOrKey;
+		$this->request($path, \Jirapi\Request::DELETE, array());
 	}
 
-	public function deleteIssue($issueIdOrKey) {
-		// TODO: set deleteSubtasks parameter
-		$path = self::PATH . '/' . $issueIdOrKey;
-		$data = $this->getClient()->request($path, \Jirapi\Request::DELETE, array());
-		$this->_data = $data;
-		$this->_lastResponse = $data;
+	public function request($path, $method, $data) {
+		return $this->getClient()->request($path, $method, $data);
 	}
 }

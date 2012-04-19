@@ -100,11 +100,16 @@ namespace Jirapi; class Client {
 	 * @return Data\Issue
 	 */
 	public function getIssue($issueIdOrKey) {
-		$issue = Data\Issue::create($this);
-		$issue->getIssue($issueIdOrKey);
-		return $issue;
+		return new Data\Issue($issueIdOrKey, $this);
 	}
 
+	/**
+	 * @param array $params
+	 * @return Data\Issue
+	 */
+	public function createIssue($params = array()) {
+		return Data\Issue::create($params, $this);
+	}
 
 	/**
 	 * @param	   $path
@@ -125,8 +130,6 @@ namespace Jirapi; class Client {
 	 * @return Data\Search
 	 */
 	public function search($sql, $params) {
-		$search = Data\Search::create($this);
-		$search->request($sql, $params);
-		return $search;
+		return new Data\Search($sql, $params, $this);
 	}
 }

@@ -13,7 +13,7 @@ class ConnectionTest extends \Jirapi\Test {
 	protected function setUp() {
 		print "\nConnectionTest::setUp()";
 		$config = array(
-			'host' => '172.17.18.64',
+			'host' => '192.168.192.44',
 			'username' => 'admin',
 			'password' => 'admin'
 		);
@@ -30,10 +30,9 @@ class ConnectionTest extends \Jirapi\Test {
 				'issuetype' => array('id' => '1')
 			)
 		);
-		$issue = Issue::create($this->_client);
-		$issue->createIssue($params);
-		self::$_key = $issue->getLastResponse()->key;
-		// print_r($issue->getLastResponse());
+		$issue = Issue::create($params, $this->_client);
+		self::$_key = $issue->getData()->key;
+		// print_r($issue->getData());
 	}
 
 	/**
@@ -41,9 +40,8 @@ class ConnectionTest extends \Jirapi\Test {
 	 */
 	public function testGetIssue() {
 		print "\nConnectionTest::testGetIssue()";
-		$issue = Issue::create($this->_client);
-		$issue->getIssue(self::$_key);
-		//print_r($issue->getLastResponse());
+		$issue = new Issue(self::$_key, $this->_client);
+		//print_r($issue->getData());
 	}
 
 	/**
@@ -51,9 +49,9 @@ class ConnectionTest extends \Jirapi\Test {
 	 */
 	public function testDeleteIssue() {
 		print "\nConnectionTest::testDeleteIssue()";
-		$issue = Issue::create(($this->_client));
-		$issue->deleteIssue(self::$_key);
-		print_r($issue->getLastResponse());
+		$issue = new Issue(self::$_key, $this->_client);
+		$issue->delete();
+		//print_r($issue->getData());
 	}
 
 }
