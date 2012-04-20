@@ -13,17 +13,18 @@ namespace Jirapi\Data; class Issue extends DataAbstract {
 	public function __construct($issueIdOrKey, $client) {
 		parent::__construct($client);
 		$this->_idOrKey = $issueIdOrKey;
-		$path = self::PATH . '/' . $this->_idOrKey;
+		$path = static::PATH . '/' . $this->_idOrKey;
 		$this->_data = $this->request($path, \Jirapi\Request::GET, array());
 	}
 
 	public static function create($params = array(), \Jirapi\Client $client) {
-		$data = $client->request(self::PATH, \Jirapi\Request::POST, $params);
+		$data = $client->request(static::PATH, \Jirapi\Request::POST, $params);
 		return new static($data->key, $client);
 	}
 
 	public function delete() {
-		$path = self::PATH . '/' . $this->_idOrKey;
+		// TODO: boolean for subIssues
+		$path = static::PATH . '/' . $this->_idOrKey;
 		$this->request($path, \Jirapi\Request::DELETE, array());
 	}
 

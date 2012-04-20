@@ -15,6 +15,13 @@ class ConnectionTest extends Test {
 		$this->_client = new Client($config);
 	}
 
+	public function testGetProject() {
+		// TODO: assertions
+		print "\nConnectionTest::testGetProject()";
+		$project = $this->_client->getProject('CWA');
+		//print_r($project->getData());
+	}
+
 	public function testSearch() {
 		// TODO: assertions
 		print "\nConnectionTest::testSearch()";

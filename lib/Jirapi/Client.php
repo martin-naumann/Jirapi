@@ -14,6 +14,9 @@ namespace Jirapi; class Client {
 	 */
 	const DEFAULT_HOST = 'localhost';
 
+	/**
+	 * Default path
+	 */
 	const DEFAULT_PATH = 'jira';
 
 	/**
@@ -96,7 +99,7 @@ namespace Jirapi; class Client {
 	}
 
 	/**
-	 * @param $issueIdOrKey
+	 * @param string $issueIdOrKey
 	 * @return Data\Issue
 	 */
 	public function getIssue($issueIdOrKey) {
@@ -109,6 +112,14 @@ namespace Jirapi; class Client {
 	 */
 	public function createIssue($params = array()) {
 		return Data\Issue::create($params, $this);
+	}
+
+	/**
+	 * @param string $key
+	 * @return Data\Project
+	 */
+	public function getProject($key) {
+		return new Data\Project($key, $this);
 	}
 
 	/**
