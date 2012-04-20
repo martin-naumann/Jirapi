@@ -123,6 +123,16 @@ namespace Jirapi; class Client {
 	}
 
 	/**
+	 * Requests all projects which are visible for the currently logged in user.
+	 * Returns an array of Data\Project
+	 *
+	 * @return array of Data\Project
+	 */
+	public function getAllProjectsVisibleToUser() {
+		return Data\Project::getAllVisibleToUser($this);
+	}
+
+	/**
 	 * Create new Search
 	 *
 	 * @return Data\Search

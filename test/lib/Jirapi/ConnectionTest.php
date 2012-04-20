@@ -19,7 +19,14 @@ class ConnectionTest extends Test {
 		// TODO: assertions
 		print "\nConnectionTest::testGetProject()";
 		$project = $this->_client->getProject('CWA');
-		//print_r($project->getData());
+		// print_r($project->getData());
+	}
+
+	public function testGetAllProjects() {
+		// TODO: assertions
+		print "\nConnectionTest::testGetProject()";
+		$projects = $this->_client->getAllProjectsVisibleToUser();
+		print_r($projects);
 	}
 
 	public function testSearch() {

@@ -16,8 +16,19 @@ namespace Jirapi\Data; class Project extends DataAbstract {
 		$this->_data = $this->request($key, \Jirapi\Request::GET, array());
 	}
 
+	public static function getAllVisibleToUser(\Jirapi\Client $client) {
+		$response = $client->request(static::PATH, \Jirapi\Request::GET, array());
+		$projects = array();
+
+		for ($i = 0; $i < count($response); $i++) {
+			$projects[] = $client->getProject($response[$i]->key);
+		}
+
+		return $projects;
+	}
+
 	public function request($path, $method, $data = array()) {
-		$path = self::PATH . '/' . $path;
+		$path = static::PATH . '/' . $path;
 		return $this->_client->request($path, $method, $data);
 	}
 
