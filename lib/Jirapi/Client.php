@@ -25,6 +25,16 @@ namespace Jirapi; class Client {
 	const TIMEOUT = 50;
 
 	/**
+	 * Default username
+	 */
+	const USERNAME = 'admin';
+
+	/**
+	 * Default password
+	 */
+	const PASSWORD = 'admin';
+
+	/**
 	 * Config with defaults
 	 *
 	 * @var array

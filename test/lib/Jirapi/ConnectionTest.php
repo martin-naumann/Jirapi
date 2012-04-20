@@ -8,26 +8,12 @@ class ConnectionTest extends Test {
 	protected function setUp() {
 		print "\nConnectionTest::setUp()";
 		$config = array(
-			'host' => '192.168.192.44',
-			'username' => 'admin',
-			'password' => 'admin'
+			'host' => '192.168.192.44'
 		);
 		$this->_client = new Client($config);
 	}
 
-	public function testGetProject() {
-		// TODO: assertions
-		print "\nConnectionTest::testGetProject()";
-		$project = $this->_client->getProject('CWA');
-		//print_r($project->getData());
-	}
 
-	public function testGetAllProjects() {
-		// TODO: assertions
-		print "\nConnectionTest::testGetAllProjects()";
-		$projects = $this->_client->getAllProjectsVisibleToUser();
-		//print_r($projects);
-	}
 
 	public function testSearch() {
 		// TODO: assertions

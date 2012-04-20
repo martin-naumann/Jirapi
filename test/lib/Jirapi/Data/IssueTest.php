@@ -5,7 +5,7 @@
  * @author   Rodrigo Benz
  */
 namespace Jirapi\Data; require_once dirname(__FILE__) . '/../../../bootstrap.php';
-class ConnectionTest extends \Jirapi\Test {
+class IssueTest extends \Jirapi\Test {
 
 	protected $_client = null;
 	protected static $_key = '';
@@ -13,9 +13,7 @@ class ConnectionTest extends \Jirapi\Test {
 	protected function setUp() {
 		print "\nConnectionTest::setUp()";
 		$config = array(
-			'host' => '192.168.192.44',
-			'username' => 'admin',
-			'password' => 'admin'
+			'host' => '192.168.192.44'
 		);
 		$this->_client = new \Jirapi\Client($config);
 	}
