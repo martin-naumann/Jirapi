@@ -10,7 +10,8 @@ namespace Jirapi\Data; class Search extends DataAbstract {
 
 	protected $_data = array();
 
-	//TODO: Expand & refactoring. This class isn't doing much.
+	// TODO: Expand & refactoring.
+	// This class isn't doing much. Right now it just provides the path.
 
 	/**
 	 * @param string $jql

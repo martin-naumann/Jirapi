@@ -99,6 +99,8 @@ namespace Jirapi; class Client {
 	}
 
 	/**
+	 * Returns a full representation of the issue for the given issue key.
+	 *
 	 * @param string $issueIdOrKey
 	 * @return Data\Issue
 	 */
@@ -107,6 +109,8 @@ namespace Jirapi; class Client {
 	}
 
 	/**
+	 * Creates an issue from a JSON or array representation.
+	 *
 	 * @param array $params
 	 * @return Data\Issue
 	 */
@@ -115,6 +119,8 @@ namespace Jirapi; class Client {
 	}
 
 	/**
+	 * Returns a full representation of the project for the given project key.
+	 *
 	 * @param string $key
 	 * @return Data\Project
 	 */
@@ -124,7 +130,7 @@ namespace Jirapi; class Client {
 
 	/**
 	 * Requests all projects which are visible for the currently logged in user.
-	 * Returns an array of Data\Project
+	 * Returns an array of Data\Project.
 	 *
 	 * @return array of Data\Project
 	 */
@@ -133,7 +139,7 @@ namespace Jirapi; class Client {
 	}
 
 	/**
-	 * Create new Search
+	 * Creates new Search object, which can then be used to perform searches for issues.
 	 *
 	 * @return Data\Search
 	 */
@@ -142,9 +148,11 @@ namespace Jirapi; class Client {
 	}
 
 	/**
-	 * @param	   $path
-	 * @param	   $method
-	 * @param array $data
+	 *
+	 *
+	 * @param string   $path
+	 * @param string   $method
+	 * @param array	$data
 	 * @return mixed
 	 */
 	public function request($path, $method, $data = array()) {

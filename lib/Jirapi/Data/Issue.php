@@ -17,6 +17,14 @@ namespace Jirapi\Data; class Issue extends DataAbstract {
 		$this->_data = $this->request($path, \Jirapi\Request::GET, array());
 	}
 
+	/**
+	 * Creates an issue from a JSON or array representation.
+	 *
+	 * @static
+	 * @param array $params issue representation
+	 * @param \Jirapi\Client $client
+	 * @return Issue
+	 */
 	public static function create($params = array(), \Jirapi\Client $client) {
 		$data = $client->request(static::PATH, \Jirapi\Request::POST, $params);
 		return new static($data->key, $client);
@@ -29,6 +37,7 @@ namespace Jirapi\Data; class Issue extends DataAbstract {
 	}
 
 	/**
+	 *
 	 *
 	 * @param $path
 	 * @param $method

@@ -43,7 +43,7 @@ class ConnectionTest extends \Jirapi\Test {
 		// TODO: assertions
 		print "\nConnectionTest::testGetIssue()";
 		$issue = new Issue(self::$_key, $this->_client);
-		//print_r($issue->getData());
+		print_r($issue->getData());
 	}
 
 	/**
